@@ -1,14 +1,22 @@
 const express = require('express')
 const colors = require('colors') // for coloring console messages (optional)
 const dotenv = require('dotenv').config()
+const cors = require('cors')
 const {errorHandler} = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 // Connect to database
 connectDB()
 
 const app = express()
+
+// Set CORS policy
+app.use(
+    cors({
+        origin: 'http://localhost:5050'
+    })
+)
 
 // Middleware
 app.use(express.json())
