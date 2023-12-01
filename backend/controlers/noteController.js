@@ -8,7 +8,6 @@ const Note = require('../models/noteModel')
 // @route GET /api/tickets/ticketId/notes
 // @access Private
 const getNotes = asyncHandler( async (req, res) => {
-
     // get user using id and JWT
     const user = await User.findById(req.user.id)
 
@@ -16,7 +15,6 @@ const getNotes = asyncHandler( async (req, res) => {
         res.status(401)
         throw new Error('User not found.')
     }
-
     const ticket = await Ticket.findById(req.params.ticketId)
 
     if (ticket.user.toString() !== req.user.id) {
